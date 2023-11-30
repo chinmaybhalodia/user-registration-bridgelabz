@@ -47,7 +47,8 @@ public class Main {
         }
 
         // UC5: validating password (8 chars)
-        String passwordRegex = "^.{8,}$";
+        // UC6: validating password (uppercase)
+        String passwordRegex = "^(?=.*[A-Z]).{8,}$";
         System.out.print("\nEnter password: ");
         String password = sc.nextLine();
         while (!password.matches(passwordRegex)) {
