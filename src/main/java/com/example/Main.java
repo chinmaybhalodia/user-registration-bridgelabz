@@ -46,6 +46,16 @@ public class Main {
             phone = sc.nextLine();
         }
 
+        // UC5: validating password (8 chars)
+        String passwordRegex = "^.{8,}$";
+        System.out.print("\nEnter password: ");
+        String password = sc.nextLine();
+        while (!password.matches(passwordRegex)) {
+            System.out.println("Please enter a valid response.");
+            System.out.print("\nEnter password: ");
+            password = sc.nextLine();
+        }
+
         sc.close();
     }
 }
