@@ -25,6 +25,17 @@ public class Main {
             System.out.print("Enter last name: ");
             lastName = sc.nextLine();
         }
+
+        // UC3: validating email address
+        String emailRegex = "^[a-zA-Z0-9.$&%_+-]+@[a-zA-Z0-9-]+(\\.[a-zA-Z]{2,})+$";
+        System.out.print("\nEnter email: ");
+        String email = sc.nextLine();
+        while (!email.matches(emailRegex)) {
+            System.out.println("Please enter a valid response.");
+            System.out.print("\nEnter email: ");
+            email = sc.nextLine();
+        }
+
         sc.close();
     }
 }
