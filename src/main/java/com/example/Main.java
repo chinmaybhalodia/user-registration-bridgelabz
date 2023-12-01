@@ -27,7 +27,7 @@ public class Main {
         }
 
         // UC3: validating email address
-        String emailRegex = "^[a-zA-Z0-9.$&%_+-]+@[a-zA-Z0-9-]+(\\.[a-zA-Z]{2,})+$";
+        String emailRegex = "^+[a-zA-Z0-9$&%_+-]+(\\.[a-zA-Z0-9$&%_+-]+)?@[a-zA-Z0-9-]+(\\.[a-zA-Z]{2,}){1,2}+$";
         System.out.print("\nEnter email: ");
         String email = sc.nextLine();
         while (!email.matches(emailRegex)) {
