@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class MyTest {
 
-    // UC9: testing with all sample strings
+    // UC11: testing with all given email ids
     @ParameterizedTest
     @ValueSource(strings = {
             "abc@yahoo.com",
@@ -17,10 +17,23 @@ public class MyTest {
             "abc.100@abc.com.au",
             "abc@1.com",
             "abc@gmail.com.com",
-            "abc+100@gmail.com"
+            "abc+100@gmail.com",
+            "abc",
+            "abc@.com.my",
+            "abc123@gmail.a",
+            "abc123@.com",
+            "abc123@.com.com",
+            ".abc@abc.com",
+            "abc()*@gmail.com",
+            "abc@%*.com",
+            "abc..2002@gmail.com",
+            "abc.@gmail.com",
+            "abc@abc@gmail.com",
+            "abc@gmail.com.1a",
+            "abc@gmail.com.aa.au"
     })
     public void testEmails(String email) {
-        String emailRegex = "^[a-zA-Z0-9.$&%_+-]+@[a-zA-Z0-9-]+(\\.[a-zA-Z]{2,})+$";
+        String emailRegex = "^+[a-zA-Z0-9$&%_+-]+(\\.[a-zA-Z0-9$&%_+-]+)?@[a-zA-Z0-9-]+(\\.[a-zA-Z]{2,}){1,2}+$";
         Pattern pattern = Pattern.compile(emailRegex);
         Matcher matcher = pattern.matcher(email);
         assertTrue(matcher.matches());
