@@ -18,6 +18,16 @@ public class MyTest {
             "abc@1.com",
             "abc@gmail.com.com",
             "abc+100@gmail.com",
+    })
+    public void testEmailHappy(String email) {
+        String emailRegex = "^+[a-zA-Z0-9$&%_+-]+(\\.[a-zA-Z0-9$&%_+-]+)?@[a-zA-Z0-9-]+(\\.[a-zA-Z]{2,}){1,2}+$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+        assertTrue(matcher.matches());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {
             "abc",
             "abc@.com.my",
             "abc123@gmail.a",
@@ -32,7 +42,7 @@ public class MyTest {
             "abc@gmail.com.1a",
             "abc@gmail.com.aa.au"
     })
-    public void testEmails(String email) {
+    public void testEmailSad(String email) {
         String emailRegex = "^+[a-zA-Z0-9$&%_+-]+(\\.[a-zA-Z0-9$&%_+-]+)?@[a-zA-Z0-9-]+(\\.[a-zA-Z]{2,}){1,2}+$";
         Pattern pattern = Pattern.compile(emailRegex);
         Matcher matcher = pattern.matcher(email);
@@ -41,8 +51,8 @@ public class MyTest {
 
     // UC10: testing all other fields
     @ParameterizedTest
-    @ValueSource(strings = { "Chinmay", "chinmay", "ab", "aB", "abc", "Abc" })
-    public void testNames(String name) {
+    @ValueSource(strings = { "Chinmay", "Abc" })
+    public void testNameHappy(String name) {
         String nameRegex = "^[A-Z][a-zA-Z]{2,}$";
         Pattern pattern = Pattern.compile(nameRegex);
         Matcher matcher = pattern.matcher(name);
@@ -50,8 +60,17 @@ public class MyTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = { "91 9313402393", "+91 9313402393", "9313402393", "93134 02393", "919313402393" })
-    public void testPhoneNumbers(String phone) {
+    @ValueSource(strings = { "chinmay", "ab", "aB", "abc" })
+    public void testNameSad(String name) {
+        String nameRegex = "^[A-Z][a-zA-Z]{2,}$";
+        Pattern pattern = Pattern.compile(nameRegex);
+        Matcher matcher = pattern.matcher(name);
+        assertTrue(matcher.matches());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = { "91 9313402393", "99 8412612" })
+    public void testPhoneNumberHappy(String phone) {
         String phoneRegex = "^[0-9]{1,4} [0-9]{5,15}$";
         Pattern pattern = Pattern.compile(phoneRegex);
         Matcher matcher = pattern.matcher(phone);
@@ -59,8 +78,26 @@ public class MyTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = { "Hello", "helloworld", "HelloWorld", "HelloWorld123", "HelloWorld@123" })
-    public void testPassword(String pasword) {
+    @ValueSource(strings = { "+91 9313402393", "9313402393", "93134 02393", "919313402393" })
+    public void testPhoneNumberSad(String phone) {
+        String phoneRegex = "^[0-9]{1,4} [0-9]{5,15}$";
+        Pattern pattern = Pattern.compile(phoneRegex);
+        Matcher matcher = pattern.matcher(phone);
+        assertTrue(matcher.matches());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = { "HelloWorld@123", "IamPassword#05" })
+    public void testPasswordHappy(String pasword) {
+        String passwordRegex = "^(?=.*[A-Z])(?=.*\\d)(?=.*[^A-Za-z\\d]).{8,}$";
+        Pattern pattern = Pattern.compile(passwordRegex);
+        Matcher matcher = pattern.matcher(pasword);
+        assertTrue(matcher.matches());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = { "Hello", "helloworld", "HelloWorld", "HelloWorld123" })
+    public void testPasswordSad(String pasword) {
         String passwordRegex = "^(?=.*[A-Z])(?=.*\\d)(?=.*[^A-Za-z\\d]).{8,}$";
         Pattern pattern = Pattern.compile(passwordRegex);
         Matcher matcher = pattern.matcher(pasword);
